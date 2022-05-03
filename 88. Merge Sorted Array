@@ -1,0 +1,29 @@
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        int end2=n-1;
+        int end1=m-1;
+        int i=m+n-1;
+        cout<<"i="<<i<<endl;
+        cout<<"end1:"<<end1<<endl;
+        cout<<"end2:"<<end2<<endl;
+        
+        while(end1>=0 && end2>=0){
+            if(nums1[end1] >= nums2[end2] ){
+                nums1[i]=nums1[end1];
+                end1--;
+            }
+            else {
+                nums1[i]=nums2[end2];
+                end2--;
+            }
+            i--;
+        }                 
+        if(end1<0 && end2>=0){
+            while(end2>=0){
+                nums1[end2]=nums2[end2];
+                end2--;
+            }
+        }
+    }
+};
