@@ -1,0 +1,48 @@
+class Solution {
+public:
+    bool validPalindrome(string s) {
+        //正反指標 對不上 則CALL反指標+1 對的上+1的就是隊的
+        int n=s.length();
+        int flag=1;
+        int end=n-1;
+        for(int i=0;i<n ;i++){
+            //相同 或相鄰且一樣 結束
+            //cout<<i<<" "<<s[i]<<"   " <<end-i<<"  "<<s[end-i]<<endl;
+            if(i==end-i ||( (s[i]==s[end-i]) &&end-i==i+1)){
+                //stop condition
+                break;
+            }
+            else if(s[i]==s[end-i]){    
+            }
+            else{
+                //call end-1
+                flag=pass(s,i,end-i-1) ;
+                
+                //call begin+1                
+                if(flag==0){
+                    flag=pass(s,i+1,end-i);
+                }
+                //only skip one times;
+                break;
+            }
+        }
+
+        return flag;
+
+    }
+    
+    bool pass(string s,int start,int end){
+        for(int i=0;i<end ;i++){
+            if(start+i==end-i ||( (s[start+i]==s[end-i]) && end-i==start+i+1)){
+                break;
+            }
+            else if(s[start+i]==s[end-i]){    
+            }
+            else{
+                return false;
+            }
+        }
+        return true;
+    }
+
+};
