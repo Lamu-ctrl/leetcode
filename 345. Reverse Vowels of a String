@@ -1,0 +1,39 @@
+class Solution {
+public:
+    string reverseVowels(string s) {
+        int n=s.length();
+        map<int , char> map;
+        // mark all vowels
+        for(int i=0;i<n ;i++){
+            if(s[i] == 'a' ){
+                map[i]='a';
+            }
+            else if(s[i] == 'e' ){
+                map[i]='e';
+            }
+            else if(s[i] == 'i' ){
+                map[i]='i';
+            }
+            else if(s[i] == 'o' ){
+                map[i]='o';
+            }            
+            else if(s[i] == 'u' ){
+                map[i]='u';
+            }               
+        }
+        //non empty
+        if(map.empty() != true){
+            auto forward = map.begin();
+            auto backward = map.rbegin();
+            for(int i=0;i<n;i++){
+                if(i== forward->first){
+                    s[i] = backward->second;
+                    forward++;
+                    backward++;
+                }
+            }
+        }
+        return s;
+    }
+    
+};
