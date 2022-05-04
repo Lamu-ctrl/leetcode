@@ -1,0 +1,35 @@
+class Solution {
+public:
+    int findUnsortedSubarray(vector<int>& nums) {
+        vector<int> vec;
+        for(auto it= nums.begin();it!= nums.end();it++){
+            vec.push_back(*it);
+        }
+        //sort vec;
+        sort(vec.begin(),vec.end());
+        
+        int left=-1;
+        int right=-1;
+        int n=nums.size();
+        //find left side
+        for(int i=0;i<n;i++){
+            if(nums[i]!=vec[i]){
+                left=i;
+                break;
+            }
+        }
+        //if left side exite than seek right side otherwise meaning that this is wellordering
+        if(left!=-1){
+            for(int j=n-1; j>=0;j--){
+                if(nums[j]!=vec[j]){
+                    right=j;
+                    break;
+                }
+            }
+        }
+        if(right!=left)
+            return right-left+1;       
+        return 0;
+    }
+
+};
