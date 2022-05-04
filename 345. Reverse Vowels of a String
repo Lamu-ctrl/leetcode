@@ -5,21 +5,9 @@ public:
         map<int , char> map;
         // mark all vowels
         for(int i=0;i<n ;i++){
-            if(s[i] == 'a' ){
-                map[i]='a';
-            }
-            else if(s[i] == 'e' ){
-                map[i]='e';
-            }
-            else if(s[i] == 'i' ){
-                map[i]='i';
-            }
-            else if(s[i] == 'o' ){
-                map[i]='o';
-            }            
-            else if(s[i] == 'u' ){
-                map[i]='u';
-            }               
+            if(s[i] == 'a' ||s[i] == 'e'||s[i] == 'i'||s[i] == 'o'||s[i] == 'u'||s[i] == 'A'||s[i] == 'E'||s[i] == 'I'||s[i] == 'O'||s[i] == 'U'){
+                map[i]=s[i];
+            }              
         }
         //non empty
         if(map.empty() != true){
@@ -28,8 +16,11 @@ public:
             for(int i=0;i<n;i++){
                 if(i== forward->first){
                     s[i] = backward->second;
-                    forward++;
-                    backward++;
+                    if(map.size()!=1){
+                        forward++;
+                        backward++;                        
+                    }
+
                 }
             }
         }
