@@ -1,0 +1,52 @@
+class Solution {
+public:
+    
+    
+    string findLongestWord(string s, vector<string>& dictionary) {
+        int ns=s.length();
+        int nd=dictionary.size();
+        int longest=0;
+        int index=-1;
+        
+
+        for(int i=0; i<nd ;i++){
+            if(dictionary[i].length()>=longest){
+                if(fit(s,ns,dictionary[i]) ){
+                    if(longest < dictionary[i].length() || longest==0){
+                        index=i;
+                        longest=dictionary[i].length();                        
+                    }
+                    else if(longest == dictionary[i].length()){
+                        if(dictionary[i]<dictionary[index]){
+                            index=i;                            
+                        }
+                    
+                    }
+                }
+            }
+        }
+        
+        if(index!=-1){
+            return dictionary[index];
+        }
+        else
+            return "";
+    }
+    
+    bool fit(string s, int n ,string b){
+        int nb=b.length();
+        int ptrb=-1;
+        for(int i=0;i<n;i++){
+            if(ptrb+1 < nb){
+                if(s[i]==b[ptrb+1]){
+                    ptrb++;
+                }
+            }
+        }
+        if(ptrb+1==nb){
+            return true;
+        }
+        return 0;
+    }
+    
+};
