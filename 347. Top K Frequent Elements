@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        //map <number,times>
+        map<int , int> map;
+        const int n=nums.size();
+        //counting frequence
+        for(int i=0;i<n;i++){
+            map[ nums[i] ]++;
+        }
+        //pair<times,number> , pq order decreceingly by pair.first
+        priority_queue< pair<int,int > > pq;
+        for(auto it=map.begin() ;it!=map.end();it++ ){
+            pq.push({it->second,it->first});            
+        }
+        
+        //pick up top k
+        vector<int> vec;        
+        while(k>0){
+            vec.push_back( pq.top().second );
+            pq.pop();
+            k--;
+        }
+        return vec;
+    }
+};
