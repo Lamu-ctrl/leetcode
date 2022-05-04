@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int maxOperations(vector<int>& nums, int k) {
+        //<number , # >
+        int pair=0;
+        map<int,int> map;
+        const int n=nums.size();
+        int target;
+        for(int i=0; i<n ;i++){
+            target=k-nums[i];
+            if( map[target] > 0){
+                map[target]--;
+                pair++;
+            }
+            else{
+                map[ nums[i] ]++;                 
+            }
+        }
+        return pair;
+    }
+};
