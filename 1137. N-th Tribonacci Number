@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int tribonacci(int n) {
+        vector<int> vec;
+        //initialize 
+        vec.push_back(0);
+        vec.push_back(1);
+        vec.push_back(1);
+        if(n==0 || n==1||n==2){
+            return vec[n];
+        }
+        for(int i=3;i<=n;i++){
+            vec.push_back( vec[i-1]+vec[i-2]+vec[i-3] );
+        }
+        return vec[n];        
+    }
+};
