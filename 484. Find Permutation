@@ -1,0 +1,31 @@
+class Solution {
+public:
+    vector<int> findPermutation(string s) {
+        const int n = s.length();
+        stack <int> stack;
+        vector <int> vec;
+        for(int i=0 ; i < n ; i++){
+            stack.push(i+1);
+            if(s[i] =='I'){
+                while(stack.size()!=0){
+                    
+                    vec.push_back( stack.top() );
+                    stack.pop();
+                }
+            }
+            if(i==n-1){
+                if(s[i]=='I'){
+                    vec.push_back(i+2);
+                }
+                else{
+                    stack.push(i+2);
+                    while(stack.size()!=0){
+                        vec.push_back( stack.top() );
+                        stack.pop();
+                    }                    
+                }
+            }
+        }
+        return vec;
+    }
+};
