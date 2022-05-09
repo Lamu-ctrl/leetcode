@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int rob(vector<int>& nums) {
+        const int n=nums.size();
+        vector<int> first (n+2);
+        vector<int> end   (n+2);
+        
+        if(n==1){
+            return nums[0];
+        }
+        //skip final house ,rob nums[0] to nums[n-2] 
+        for(int i=2 ;i<=n ; i++){
+            first[i]=max( first[i-2]+nums[i-2] , first[i-1] );    
+        }
+        //skip first house ,rob nums[1] to nums[n-1] ;
+        for(int i=3 ;i<=n+1 ; i++){
+            end[i]=max( end[i-2]+nums[i-2] , end[i-1] );    
+        }        
+        
+        return max(  max(first[n-1] ,first[n]) , max(end[n],end[n+1])  );
+        
+    }
+};
