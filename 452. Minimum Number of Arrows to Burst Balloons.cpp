@@ -3,7 +3,9 @@ public:
     int findMinArrowShots(vector<vector<int>>& points) {
         int n=points.size();
         int res=1;
-        if(n==0) return 0;
+        if(n==1){
+            return res;
+        }
         sort(points.begin(),points.end());    
         int  right=points[0][1];      
         for(int i=1;i<n;i++){
