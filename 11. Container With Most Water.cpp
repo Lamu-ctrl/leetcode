@@ -6,7 +6,6 @@ public:
         int right=n-1;
         int res=0;
         while(right>=left){
-            res=max(res, (right-left)*min(height[right],height[left]));
             if(height[right]>height[left]){
                 res=max(res, (right-left)*height[left] );
                 left++;
