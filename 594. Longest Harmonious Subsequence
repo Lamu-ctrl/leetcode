@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int findLHS(vector<int>& nums) {
+        map<int,int> map;
+        for(auto t:nums){
+            map[t]++;
+        }
+        int res=0;
+        int i=0 ;
+        for(auto it=map.begin(); i<map.size()-1 ; it++,i++){
+            auto next=it;
+            next++;
+            if(it->first +1 == next -> first)
+                res=max(res, it->second + next->second);
+        }
+        return res;
+    }
+};
