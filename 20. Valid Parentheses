@@ -6,24 +6,16 @@ public:
         for(int i=0;i<n;i++){
             if(s[i]=='{' || s[i]=='(' || s[i]=='[' ){
                 stake.push( s[i] );
-                cout<<"inside "<<stake.top()<<endl;
             }
             else{
-                if(stake.empty()) return 0;
-                    
-                if( (s[i]=='}' && stake.top()=='{') ||(s[i]==']' && stake.top()=='[')|| (s[i]==')' && stake.top()=='(')  ){
-                    stake.pop();
+                if(stake.empty() || (s[i]=='}' && stake.top()!='{') ||(s[i]==']' && stake.top()!='[')|| (s[i]==')' && stake.top()!='(')  ){
+                    return 0;   
                 }
                 else{
-                    return 0;
+                    stake.pop();
                 }
-                
             }
         }
-        if(stake.empty())
-            return 1;
-        else
-            return 0;
-        
+        return stake.empty() ;
     }
 };
