@@ -1,0 +1,13 @@
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+        map<int,int> map;
+        for(auto t:nums){
+            map[t]++;
+            if(map[t]>1){
+                return 1;
+            }
+        }
+        return 0;
+    }
+};
