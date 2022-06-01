@@ -1,0 +1,46 @@
+class Solution {
+public:
+    int singleNonDuplicate(vector<int>& nums) {
+        int left=0;
+        int right=nums.size()-1;
+        int mid=left+(right-left)/2;
+        if(nums.size()==1){
+            return nums[0];
+        }
+        while(right>=left){
+            if(right==left){
+                return nums[left];
+            }
+            mid=left+(right-left)/2;
+            if(mid%2==0){
+                // 0 0 X 0
+                //1122 4 45
+                
+                if(nums[mid]==nums[mid+1] ){
+                    left=mid+2;
+                }
+                else if(nums[mid]==nums[mid-1]){
+                    //1134 4 55
+                    right=mid-2;
+                }
+                else{
+                    return nums[mid];
+                }
+            }
+            else{
+                //115 5 00
+                //114 5 53
+                if(nums[mid]==nums[mid-1]){
+                    left=mid+1;
+                }
+                else if(nums[mid]==nums[mid+1]){
+                    right=mid-1;
+                }
+                else{
+                    return nums[mid];
+                }
+            }
+        }
+        return -1;
+    }
+};
