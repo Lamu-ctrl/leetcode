@@ -1,0 +1,15 @@
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        //2 pointer
+        string s=to_string(x);
+        int left=0;
+        int right=s.length()-1;
+        while(right>=left){
+            if(s[right--]!=s[left++]){
+                return false;
+            }
+        }
+        return true;
+    }
+};
