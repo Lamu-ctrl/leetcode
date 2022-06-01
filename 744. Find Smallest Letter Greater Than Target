@@ -1,0 +1,20 @@
+class Solution {
+public:
+    char nextGreatestLetter(vector<char>& letters, char target) {
+        set<char> set;
+        for(auto t:letters){
+            set.insert(t);
+        }
+        if(*set.rbegin() <= target){
+            return *set.begin();
+        }
+        else{
+            for(auto t:set){
+                if(t>target){
+                    return t;
+                }
+            }
+        }
+        return ' ';
+    }
+};
