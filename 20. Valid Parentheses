@@ -1,0 +1,29 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        int n=s.length();
+        stack <char> stake;
+        for(int i=0;i<n;i++){
+            if(s[i]=='{' || s[i]=='(' || s[i]=='[' ){
+                stake.push( s[i] );
+                cout<<"inside "<<stake.top()<<endl;
+            }
+            else{
+                if(stake.empty()) return 0;
+                    
+                if( (s[i]=='}' && stake.top()=='{') ||(s[i]==']' && stake.top()=='[')|| (s[i]==')' && stake.top()=='(')  ){
+                    stake.pop();
+                }
+                else{
+                    return 0;
+                }
+                
+            }
+        }
+        if(stake.empty())
+            return 1;
+        else
+            return 0;
+        
+    }
+};
