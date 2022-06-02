@@ -1,0 +1,51 @@
+/*
+1. 简单的思路，如何想到这个解法的:先想到樹的DFS跟老鼠走迷宮，算面積就去記上下限
+2. 该解法的时空复杂度:O(m*n)
+3. 从阅读题目到 AC 的所需时间:28分鐘 
+x縱 Y橫
+*/
+class Solution {
+public:
+    int maxx;
+    int maxy;
+    int minx;
+    int miny;
+    int minArea(vector<vector<char>>& image, int x, int y) {
+        maxx=x;
+        minx=x;
+        maxy=y;
+        miny=y;
+        if(image[x][y]=='1')
+            dfs(image,x,y);
+        return (maxx-minx+1)*(maxy-miny+1);
+    }
+    void dfs(vector<vector<char>>& image,int x,int y){
+        image[x][y]='0';
+        
+        if(x+1 < image.size()){
+            if(image[x+1][y]=='1'){
+                dfs( image,x+1,y );  
+                maxx=max(maxx,x+1);
+            }               
+        }
+
+        if(x-1>=0)
+            if(image[x-1][y]=='1'){
+                dfs( image,x-1,y );  
+                minx=min(minx,x-1);
+            }
+                  
+        if(y+1 <image[0].size())
+            if(image[x][y+1]=='1'){
+                dfs( image,x,y+1 );
+                maxy=max(maxy,y+1);
+            }
+                
+        if(y-1>=0)
+            if(image[x][y-1]=='1'){
+                dfs( image,x,y-1 );
+                miny=min(miny,y-1);
+            }
+                            
+    }
+};
