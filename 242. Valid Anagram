@@ -1,0 +1,18 @@
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        map<char,int> map;
+        for(auto tt:s){
+            map[tt]++;
+        }
+        for(auto tt:t){
+            map[tt]--;
+        }
+        for(auto tt:map){
+            if(tt.second != 0){
+                return 0;
+            }
+        }
+        return 1;
+    }
+};
