@@ -1,0 +1,20 @@
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        set<ListNode*> set;
+        auto now=headA;
+        while(now!=NULL){
+            set.insert(now);
+            now=now->next;
+        }
+        now=headB;
+        while(now!=NULL){
+            if(set.find(now) == set.end() )
+                now=now->next;
+            else{
+                return now;
+            }
+        }
+        return now;
+    }
+};
