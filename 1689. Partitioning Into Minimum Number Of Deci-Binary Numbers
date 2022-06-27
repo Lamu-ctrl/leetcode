@@ -1,0 +1,10 @@
+class Solution {
+public:
+    int minPartitions(string n) {
+        char res='0';
+        for(auto t:n){
+            res= max( res,t);
+        }
+        return (res-'0');
+    }
+};
